@@ -51,9 +51,9 @@ public class AmazonTest {
         driver.get("https://www.amazon.fr");
 
         HomePage homePage = new HomePage(driver);
-        SearchResultPage searchResult = new SearchResultPage(driver);
+
         ProductPage productPage = new ProductPage(driver);
-        CartPage cartPage = new CartPage(driver);
+
         GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
 
         homePage.closeCookiePopup();
@@ -61,7 +61,7 @@ public class AmazonTest {
         homePage.goToSearchResultPage();
         gamesAndConsolesPage.openBestSeller(0);
 
-        Assert.assertEquals(productPage.getPrice(),"54,99", "The price is not 54,99");
+        Assert.assertEquals(productPage.getPrice(), "54,99", "The price is not 54,99");
 
 
         Assert.assertEquals(productPage.getAvailableDate(), "Cet article paraîtra le 12 mai 2023.", "The msg : Cet article ... is not visible ");
