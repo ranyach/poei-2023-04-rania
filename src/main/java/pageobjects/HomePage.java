@@ -27,12 +27,14 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void search(String keyword) {
+    public SearchResultPage search(String keyword) {
         driver.findElement(searchBarLocator).sendKeys(keyword + Keys.ENTER);
+        return  new SearchResultPage(driver);
     }
 
-    public void closeCookiePopup(){
+    public HomePage closeCookiePopup(){
         driver.findElement(cookiesLocator).click();
+        return this;
     }
 
 

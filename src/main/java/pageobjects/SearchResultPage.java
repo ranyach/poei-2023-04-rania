@@ -12,7 +12,8 @@ public class SearchResultPage {
         this.driver= driver;
     }
 
-    public void openFirstProductPage(){
+    public ProductPage openFirstProductPage(){
         driver.findElements(searchResultList).get(0).click();
+        return new ProductPage(driver);
     }
 }

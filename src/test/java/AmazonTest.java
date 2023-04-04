@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -27,18 +26,14 @@ public class AmazonTest {
         driver.get("https://www.amazon.fr");
         String keyword = "iPhone 13";
         HomePage homePage = new HomePage(driver);
-        SearchResultPage searchResult = new SearchResultPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-        CartPage cartPage = new CartPage(driver);
+       // SearchResultPage searchResult = new SearchResultPage(driver);
+       // ProductPage productPage = new ProductPage(driver);
+      //  CartPage cartPage = new CartPage(driver);
 
-        homePage.closeCookiePopup();
-        homePage.search(keyword);
-
-        searchResult.openFirstProductPage();
-
-        productPage.addToCart();
-        productPage.refuseInsurance();
-        productPage.openCart();
+        CartPage cartPage = homePage.closeCookiePopup()
+                .search(keyword)
+                .openFirstProductPage()
+                .addToCart();
 
         Assert.assertTrue(cartPage.proceedToCheckoutButtonVisibility(), "Payment button not visible");
         Assert.assertTrue(cartPage.getProductTitle().toLowerCase().contains(keyword.toLowerCase()), "The product title doesn't contain " + keyword);
@@ -48,6 +43,8 @@ public class AmazonTest {
 
     @Test
     public void testZelda() {
+        String expectedPrice = "54,99";
+        String expectedAvailableDate = "Cet article paraîtra le 12 mai 2023.";
         driver.get("https://www.amazon.fr");
 
         HomePage homePage = new HomePage(driver);
@@ -57,14 +54,11 @@ public class AmazonTest {
         GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
 
         homePage.closeCookiePopup();
-
         homePage.goToSearchResultPage();
         gamesAndConsolesPage.openBestSeller(0);
 
-        Assert.assertEquals(productPage.getPrice(), "54,99", "The price is not 54,99");
-
-
-        Assert.assertEquals(productPage.getAvailableDate(), "Cet article paraîtra le 12 mai 2023.", "The msg : Cet article ... is not visible ");
+        Assert.assertEquals(productPage.getPrice(), expectedPrice, "The price is not 54,99");
+        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "Available date is not visible ");
 
     }
 

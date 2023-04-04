@@ -25,8 +25,11 @@ public class ProductPage {
         this.driver = driver;
     }
 
-    public void addToCart(){
+    public CartPage addToCart(){
         driver.findElement(addToCartButtonLocator).click();
+        this.refuseInsurance();
+        this.openCart();
+        return new CartPage(driver);
     }
 
     public void refuseInsurance(){
