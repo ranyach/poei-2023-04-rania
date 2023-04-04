@@ -11,6 +11,11 @@ public class ProductPage {
     By NoThanksButtonLocator = By.cssSelector("#attachSiNoCoverage");
 
     By cartButtonLocator = By.cssSelector("#attach-sidesheet-view-cart-button");
+
+    By availabilityLocator = By.cssSelector("#availability span");
+
+    By integerPriceLocator = By.cssSelector("span.a-price.aok-align-center span span.a-price-whole");
+    By decimalPriceLocator = By.cssSelector("span.a-price.aok-align-center span span.a-price-fraction");
     WebDriver driver;
 
 
@@ -32,5 +37,15 @@ public class ProductPage {
     public void openCart(){
         Utils.setExplicitWait(driver);
         Utils.wait.until(ExpectedConditions.elementToBeClickable(cartButtonLocator)).click();
+    }
+
+    public String getAvailableDate(){
+
+       return driver.findElement(availabilityLocator).getText();
+    }
+
+    public String getPrice(){
+
+        return driver.findElement(integerPriceLocator).getText() + "," + driver.findElement(decimalPriceLocator).getText() ;
     }
 }

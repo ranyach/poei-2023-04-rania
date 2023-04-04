@@ -3,7 +3,10 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class HomePage {
 
@@ -37,12 +40,13 @@ public class HomePage {
         driver.findElement(allCategoriesMenuLocator).click();
         Utils.setExplicitWait(driver);
         Utils.wait.until(ExpectedConditions.elementToBeClickable(gamesAndConsoleLocator)).click();
-        driver.findElement(gamesCategoryLocator).click();
+
         try {
-            Thread.sleep(5000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         driver.findElements(allGamesLocator).get(1).click();
+
     }
 }
