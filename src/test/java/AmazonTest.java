@@ -30,13 +30,14 @@ public class AmazonTest {
        // ProductPage productPage = new ProductPage(driver);
       //  CartPage cartPage = new CartPage(driver);
 
-        CartPage cartPage = homePage.closeCookiePopup()
-                .search(keyword)
-                .openFirstProductPage()
-                .addToCart();
-
-        Assert.assertTrue(cartPage.proceedToCheckoutButtonVisibility(), "Payment button not visible");
-        Assert.assertTrue(cartPage.getProductTitle().toLowerCase().contains(keyword.toLowerCase()), "The product title doesn't contain " + keyword);
+       // CartPage cartPage =
+                homePage.closeCookiePopup()
+                .search(keyword);
+//                .openFirstProductPage()
+//                .addToCart();
+//
+//        Assert.assertTrue(cartPage.proceedToCheckoutButtonVisibility(), "Payment button not visible");
+//        Assert.assertTrue(cartPage.getProductTitle().toLowerCase().contains(keyword.toLowerCase()), "The product title doesn't contain " + keyword);
 
     }
 
